@@ -115,9 +115,21 @@ app.listen(port, () => console.log(`Server running on port ${port} 🔥`));
 
 // ----------------------- Error Handling Middlewares -----------------------
 
-// Page not found (NO err param)
+// Page not found 
 app.use((req, res, next) => {
-    next(new ExpErrors(404, "Page Not Found"));
+    if (res.headersSent) return;
+
+    // For HTML requests render the 404 page directly (avoid creating an error
+    // which will bubble into the final error handler and produce stack traces
+    // for every missing asset). For API/json requests return JSON; otherwise
+    // return plain text.
+    if (req.accepts("html")) {
+        return res.status(404).render("errors/404.ejs", { pageStyle: "error" });
+    }
+    if (req.accepts("json")) {
+        return res.status(404).json({ error: "Not Found" });
+    }
+    res.status(404).type("txt").send("Not Found");
 });
 
 // CastError (invalid ObjectId)

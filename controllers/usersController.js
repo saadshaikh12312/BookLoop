@@ -15,7 +15,7 @@ module.exports.signup = async (req, res,) => {
         }
 
         const redirectUrl = res.locals.redirectUrl || "/books";
-        req.flash("success", `Welcome to the BookLoop ${req.user.name.firstname}`);
+        req.flash("success", `Welcome to the BookLoop ${req.user.name.firstName}`);
         res.redirect(redirectUrl);
     })
 }
