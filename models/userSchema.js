@@ -10,7 +10,7 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,     // each email must be unique
+        unique: [true, "This email is already used by another user, plaese enter a unique email."],
         lowercase: true,
         trim: true
     },
