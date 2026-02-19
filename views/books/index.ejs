@@ -1,0 +1,119 @@
+<% layout("layouts/boilerplate") %>
+
+<main class="container ">
+
+  <h2 class="page-heading"><%= heading %></h2>
+
+  <div class="fs-icons">
+    <button class="fs-icon filter">
+      <i class="fa-solid fa-sliders"></i>
+    </button>
+    <button class=" fs-icon sort">
+      <i class="fa-solid fa-up-down"></i>
+    </button>
+  </div>
+
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xxl-5 g-3">
+    <% for (let book of books) { %>
+    <div class="col d-flex justify-content-center">
+      <div class="card h-100 book-card">
+
+        <img src="<%= book.image.url %>" class="card-img-top" alt="book image" loading="lazy">
+
+        <div class="card-body">
+          <h5 class="card-title"><%= book.title %></h5>
+          <p class="card-text"><%= book.subject %></p>
+
+          <p class="card-text">
+            <span class="original-price">
+              ₹<%= book.price.actualPrice.toLocaleString("en-IN") %>
+            </span>
+            <span class="selling-price ms-1">
+              ₹<%= book.price.sellingPrice.toLocaleString("en-IN") %>
+            </span>
+          </p>
+
+          <a href="/books/<%= book._id %>" class="btn btn-pr">
+            See details
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+
+  <!-- filter panel -->
+  <form action="/books" method="GET" class="filter-panel">
+
+    <div class="filter-header">
+      <span>Filter Books</span>
+      <button type="button" class="filter-close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="filter-body">
+
+      <label class="form-label">Course</label>
+      <select class="form-select" name="course">
+        <option value="">All</option>
+        <option>BSc</option>
+        <option>BCA</option>
+        <option>BCom</option>
+        <option>BA</option>
+        <option>BTech</option>
+        <option>BE</option>
+        <option>MCA</option>
+        <option>MSc</option>
+        <option>MBA</option>
+      </select>
+
+      <label class="form-label mt-2">Condition</label>
+      <select class="form-select" name="condition">
+        <option value="">All</option>
+        <option value="new">New</option>
+        <option value="like new">Like New</option>
+        <option value="good">Good</option>
+      </select>
+
+      <label class="form-label mt-2">Exchange Type</label>
+      <select class="form-select" name="exchangeType">
+        <option value="">All</option>
+        <option value="sell">Sell</option>
+        <option value="exchange">Exchange</option>
+        <option value="donate">Donate</option>
+      </select>
+
+    </div>
+
+    <div class="filter-footer">
+      <button type="reset" class="btn btn-outline-danger">Reset</button>
+      <button type="submit" class="btn btn-pr">Apply</button>
+    </div>
+
+  </form>
+
+
+  <!-- sort sheet -->
+  <div class="sort-sheet">
+    <div class="sort-header">
+      <span>Sort By</span>
+      <i class="fa-solid fa-xmark sort-close"></i>
+    </div>
+
+    <div class="sort-options">
+      <a href="/books?sort=newest" class="sort-option">
+        Newest
+      </a>
+      <a href="/books?sort=low" class="sort-option">
+        Price: Low to High
+      </a>
+      <a href="/books?sort=high" class="sort-option">
+        Price: High to Low
+      </a>
+    </div>
+  </div>
+
+</main>

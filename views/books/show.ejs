@@ -1,0 +1,90 @@
+<%- layout("layouts/boilerplate") %>
+
+<main class="container">
+  <h2>About Book</h2>
+  <div class="row d-flex show-card">
+
+    <div class="col-md-7 p-5 text-center show-img">
+      <img src="<%= book.image.url %>" alt="<%= book.image.url[0].filename %>" class="img-fluid rounded-start">
+    </div>
+
+
+    <div class="col-md-5 card-left pt-4 ps-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= book.title %></h5>
+        <p class="card-text"><%= book.subject %></p>
+        <p class="card-text"><%= book.course %> &nbsp; <%= book.sem %></p>
+        <p class="card-text">
+          <span class="original-price">₹<%= book.price.actualPrice.toLocaleString("en-IN") %></span>
+          &nbsp;
+          <span class="selling-price">₹<%= book.price.sellingPrice.toLocaleString("en-IN") %></span>
+        </p>
+        <p class="card-text"><span class="exg-badge badge-<%= book.exchangetype %>"></span><%= book.exchangetype %></p>
+        <p class="card-text">Condition : <%= book.condition %></p>
+        <p class="card-text">Subject Code : <%= book.subjectCode %></p>
+        <p class="card-text">Publication : <%= book.publication %></p>
+        <p class="card-text">University : <%= book.university %></p>
+
+
+        <p class="card-text show-time"><small class="text-body-secondary  last-time">Last updated : <%= book.updatedAt.toLocaleString() %></small></p>
+
+      </div>
+
+      <div class="row">
+        <!-- edit delete button show when owner is open this page -->
+        <% if(currUser && currUser._id.equals(book.owner)){ %>
+        <a href="/books/<%= book._id %>/edit" class="btn btn-pr ms-2 mt-2 col-4 mb-2">edit</a>
+        <form action="/books/<%= book._id %>?_method=DELETE" method="post" class="col-4">
+          <button type="submit" class="btn btn-danger mt-2 ms-1 mb-2 ">delete</button>
+        </form>
+        <% } else if (currUser) { %>
+        <% if (requestStatus === "pending") { %>
+        <a href="#" class="btn btn-pr mt-2 ms-2 col-6 " aria-disabled="true">
+          Request Sent (Pending)
+        </a>
+
+        <% } else if (requestStatus === "accepted") { %>
+        <a href="<%= url %>" class="btn btn-success mt-2 ms-2 col-6">
+          <i class="fa-brands fa-whatsapp"></i>Contact Owner
+        </a>
+
+        <% } else if (requestStatus === "rejected") { %>
+        <a href="#" class="btn btn-danger mt-2 ms-2 col-6 " aria-disabled="true">
+          Request Declined
+        </a>
+
+        <% } else { %>
+        <a href="/request/<%= book._id %>" class="btn btn-pr mt-2 ms-2 col-6">
+          Request Book
+        </a>
+        <% } %>
+
+        <% } else { %>
+        <a href="/request/<%= book._id %>" class="btn btn-pr mt-2 ms-2 col-6">
+          Request Book
+        </a>
+        <% } %>
+      </div>
+
+    </div>
+
+    <div class="desc-own">
+      <div class="w-100 description">
+        <div class="desc-head d-flex justify-content-between align-items-center">
+          <h4>Description</h4>
+          <i class="fa-solid fa-angle-down desc-icon"></i>
+        </div>
+
+        <p class="desc-body d-flex flex-column">
+          <%= book.description  %>
+        <span class="owner">
+          Owner : <strong><%= book.ownerName %></strong>
+        </div>
+        </p>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
+</main>

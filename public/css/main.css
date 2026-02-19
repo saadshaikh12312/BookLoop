@@ -1,0 +1,821 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "./variables.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+    background-color: var(--background) !important;
+    color: var(--secondry-text);
+}
+
+main {
+    width: 100%;
+    margin-top: 0 !important;
+    min-height: calc(100vh - 4rem - 104px);
+    padding: 1rem 3rem;
+}
+
+/* ----------------------- navbar styling ----------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 4rem;
+    background-color: var(--primary) !important;
+    padding: 0 1rem;
+}
+
+.nav-link,
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+/*  Navbar (Primary theme) */
+
+.bl-navbar {
+    background-color: var(--primary);
+    padding: 0.8rem 1.25rem;
+}
+
+/* brand text */
+.bl-brand-img {
+    height: 3rem;
+    text-decoration: none;
+}
+
+/* nav links */
+.bl-nav-links .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    margin-right: 0.75rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.bl-nav-links .nav-link:hover {
+    color: #fff;
+}
+
+/* active link indicator */
+.bl-nav-links .nav-link.active {
+    color: #fff;
+}
+
+.bl-nav-links .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+/*    Buttons */
+.bl-btn {
+    padding: 8px 18px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* signup button */
+.bl-btn-light {
+    background-color: #fff;
+    color: var(--primary);
+    border: none;
+}
+
+.bl-btn-light:hover {
+    background-color: #f6f6f6;
+    transform: translateY(-1px);
+}
+
+/* login button */
+.bl-btn-outline-light {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+.bl-btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.bl-toggler {
+    border: none;
+}
+
+.bl-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+.bl-toggler:focus {
+    box-shadow: 0 0 0 0.25rem var(--focus-ring);
+}
+
+.bc-n {
+    background-color: transparent !important;
+}
+
+/* navbar stripe */
+.nav-info-strip {
+    background-color: var(--cards);
+    border-bottom: 1px solid var(--borders);
+
+    padding: 0.6rem 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    position: relative;
+}
+
+/* small brand accent line */
+.nav-info-strip::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+    background-color: var(--borders);
+}
+
+/* text */
+.nav-info-text {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--logo);
+    letter-spacing: 0.3px;
+}
+
+
+/* navbar search */
+.nav-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: transparent !important;
+}
+
+/* input */
+.nav-search-input {
+    min-width: 18rem;
+    height: 2.2rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 1.2rem !important;
+    border: 1.5px solid var(--borders) !important;
+    background-color: var(--cards);
+    color: var(--main-text) !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease;
+}
+
+/* placeholder */
+.nav-search-input::placeholder {
+    color: var(--muted-text);
+}
+
+/* focus state */
+.nav-search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem var(--focus-ring);
+    background-color: #fff;
+}
+
+/* button */
+.nav-search-btn {
+    position: absolute;
+    right: 0.25rem;
+    height: 1.8rem;
+    padding: 0 0.9rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* hover */
+.nav-search-btn:hover {
+    background-color: var(--primary-h-op);
+    /* transform: translateY(-1px); */
+    box-shadow: 0 0 0 0.25rem var(--primary);
+    background-color: white;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+/* focus-visible */
+.nav-search-btn:focus-visible {
+    background-color: var(--primary-h-op);
+    /* transform: translateY(-1px); */
+    box-shadow: 0 0 0 0.25rem var(--primary);
+    background-color: white;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.nav-search-btn:active {
+    background-color: white !important;
+    color: var(--primary) !important;
+}
+
+/* user toggler base (hidden) */
+.user-toggler {
+    position: absolute;
+    top: 4rem;
+    left: -40%;
+    width: 30%;
+    height: calc(100vh - 4rem);
+    background-color: var(--primary);
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom-left-radius: 12px;
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.user-toggler-show-lg {
+    height: max-content;
+    min-height: 7rem !important;
+    left: 100%;
+    animation: user-toggler-show-lg 0.4s ease forwards;
+
+}
+
+.user-toggler-hide-lg {
+    left: 70%;
+    animation: user-toggler-hide-lg 0.4s ease forwards;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.user-toggler-show-lg .navbar-nav {
+    flex-direction: column !important;
+    text-align: start;
+}
+
+.user-menu {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 16rem;
+
+    background-color: var(--cards);
+    border-radius: 12px;
+
+    padding: 0.75rem;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.user-menu-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-menu .nav-link {
+    color: var(--main-text);
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.user-menu .nav-link:hover {
+    background-color: var(--primary-l-op);
+}
+
+
+@keyframes user-toggler-show-lg {
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: 70%;
+    }
+}
+
+@keyframes user-toggler-hide-lg {
+    from {
+        left: 70%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+.account-icon {
+    padding: 0.2rem;
+    border: 2px solid var(--logo);
+    border-radius: 50%;
+    position: relative;
+}
+
+.user-icon {
+    color: var(--logo);
+    font-size: 1.2rem;
+}
+
+.menu-icon {
+    color: var(--logo);
+    font-size: 1.5rem;
+}
+
+.notification-circle {
+    position: absolute;
+    top: -1px;
+    right: 0px;
+    z-index: 3;
+    color: var(--accent);
+    font-size: 0.5rem;
+    box-shadow: 0 0 0 0 #ffa50270;
+    border-radius: 50%;
+    animation: notification-glowing 1s ease 1s infinite alternate-reverse;
+}
+
+.notification-circle-msg {
+    top: 40%;
+    right: 5%;
+}
+
+@keyframes notification-glowing {
+    0% {
+        box-shadow: 0 0 0 0 #ffa50270;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0.25rem #ffa50270;
+    }
+}
+
+
+/* mobile style */
+@media (max-width: 768px) {
+    .bl-auth-actions {
+        margin-top: 1rem;
+    }
+}
+
+/* -------------------- footer -------------------- */
+
+.footer {
+    width: 100%;
+    background-color: var(--background);
+    border-top: 1px solid var(--borders);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 1.2rem 0.8rem;
+}
+
+/* social icons */
+.f-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.f-icons a {
+    width: 2.2rem;
+    height: 2.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background-color: var(--cards);
+    color: var(--primary);
+
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.f-icons a:hover {
+    background-color: var(--primary-l-op);
+    transform: translateY(-2px);
+}
+
+/* brand text */
+.f-brand {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    font-weight: 500;
+}
+
+/* page links */
+.f-ptr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.f-ptr a {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.f-ptr a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* -------------------- responsive -------------------- */
+
+@media (max-width: 576px) {
+    .f-icons {
+        gap: 0.8rem;
+    }
+
+    .f-ptr {
+        gap: 0.6rem;
+    }
+}
+
+/* --------------- connect flash --------------- */
+.flash {
+    width: 40%;
+    top: 1rem;
+    right: 2rem;
+    overflow: hidden;
+}
+
+.flash::before {
+    content: "";
+    width: 100%;
+    height: 0.2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: shrink 5s linear forwards;
+}
+
+.flash-success::before {
+    background-color: var(--bs-success);
+}
+
+.flash-danger::before {
+    background-color: var(--bs-danger);
+}
+
+
+@keyframes shrink {
+    from {
+        width: 100%;
+        /* Start off-screen to the right */
+    }
+
+    to {
+        width: 0%;
+        /* End at its normal position */
+    }
+}
+
+/* ----------------- button style ---------------- */
+.btn {
+    padding: 0.25rem 1rem;
+}
+
+.btn-pr {
+    color: white;
+    background-color: var(--primary);
+    padding: 0.25rem 1rem;
+    border: none;
+}
+
+.btn-pr:hover {
+    background-color: var(--primary-h-op);
+    color: white;
+}
+
+.btn-pr:focus-visible {
+    background-color: var(--primary-h-op);
+    box-shadow: 0 0 0 0.25rem var(--primary-l-op);
+    color: white;
+}
+
+/* ------------------- page style ------------------- */
+.page-heading {
+    color: var(--main-text);
+    cursor: pointer;
+}
+
+/* ------------------- media queries ----------------- */
+/* this is style is applied only before nav-collaps */
+@media (min-width:991px) {
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0 !important;
+    }
+
+    /* hover link indicator */
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background-color: var(--accent);
+        transition: 0.5s;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .account-icon-sm {
+        display: none;
+    }
+
+    .mb-search {
+        display: none;
+    }
+}
+
+@media (max-width:991px) {
+
+    .account-icon-lg {
+        display: none;
+    }
+
+    .navbar-collapse .bl-auth-actions {
+        margin-top: 1rem;
+    }
+
+    .navbar-collapse .bl-btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .display-none {
+        display: none !important;
+    }
+
+    .nav-link {
+        color: black !important;
+    }
+
+    .bl-navbar {
+        padding: 0rem 1.25rem;
+    }
+
+    .bl-auth-actions {
+        margin-top: 0.25rem;
+    }
+
+    .bl-toggler {
+        padding: 0.2rem 0 !important;
+    }
+
+    .navbar-collapse {
+        background-color: var(--primary);
+        position: absolute;
+        top: 4rem;
+        right: -40%;
+        width: 40%;
+        height: calc(100vh - 4rem);
+
+        padding: 1rem;
+        padding-bottom: 0.5rem;
+
+        border-bottom-left-radius: 12px;
+        box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+
+        z-index: 1000;
+    }
+
+    /* show user toggler */
+    .user-toggler-show {
+        animation: user-toggler-show-40 0.4s ease forwards;
+    }
+
+    /* hide user toggler */
+    .user-toggler-hide {
+        animation: user-toggler-hide-40 0.4s ease forwards;
+    }
+
+    /* show navbar */
+    .navbar-collapse-show {
+        animation: navbar-collapse-show-40 0.4s ease forwards;
+    }
+
+    /* hide navbar */
+    .navbar-collapse-hide {
+        animation: navbar-collapse-hide-40 0.4s ease forwards;
+    }
+
+    .user-toggler-show-lg {
+        display: none;
+    }
+
+    .user-toggler-hide-lg {
+        display: none;
+    }
+
+    .mb-search {
+        position: sticky;
+        top: 4rem;
+        z-index: 5;
+        padding: 0.25rem 10%;
+        background-color: var(--background);
+    }
+
+}
+
+/* slide animation */
+@keyframes navbar-collapse-show-40 {
+    from {
+        right: -40%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+@keyframes navbar-collapse-hide-40 {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: -40%;
+    }
+}
+
+@keyframes user-toggler-show-40 {
+    from {
+        left: -40%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes user-toggler-hide-40 {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -40%;
+    }
+}
+
+@media (max-width:768px) {
+    main {
+        padding: 1.5rem;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+    .flash {
+        width: 70%;
+    }
+
+    /* .navbar-collapse {
+        width: 50%;
+    } */
+}
+
+@media (max-width:468px) {
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    .flash {
+        width: 95%;
+        top: 1rem;
+        right: 0.5rem;
+    }
+
+    .bl-brand-img {
+        height: 2.5rem;
+    }
+
+    .user-toggler {
+        left: -100%;
+        width: 100%;
+    }
+
+    .navbar-collapse {
+        right: -100%;
+        width: 100%;
+    }
+
+    /* show navbar */
+    .navbar-collapse-show {
+        animation: navbar-collapse-show-100 0.4s ease forwards;
+    }
+
+    /* hide navbar */
+    .navbar-collapse-hide {
+        animation: navbar-collapse-hide-100 0.4s ease forwards;
+    }
+
+    /* show user toggler */
+    .user-toggler-show {
+        animation: user-toggler-show-100 0.4s ease forwards;
+    }
+
+    /* hide user toggler */
+    .user-toggler-hide {
+        animation: user-toggler-hide-100 0.4s ease forwards;
+    }
+
+    .nav-info-text {
+        font-size: 0.9rem;
+    }
+
+    .mb-search {
+        padding: 0 0.25rem;
+    }
+
+    #nav-search-btn {
+        margin-bottom: 0 !important;
+    }
+
+}
+
+/* slide animation */
+@keyframes navbar-collapse-show-100 {
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+@keyframes navbar-collapse-hide-100 {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: -100%;
+    }
+}
+
+@keyframes user-toggler-show-100 {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes user-toggler-hide-100 {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -100%;
+    }
+}

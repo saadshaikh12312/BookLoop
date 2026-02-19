@@ -1,0 +1,316 @@
+@import "./variables.css";
+
+
+.book-card {
+  width: 100%;
+  max-width: 220px;
+  background-color: var(--background);
+  border: none;
+  position: relative;
+  padding-bottom: 0.7rem;
+  cursor: pointer;
+  animation: fadeUp 1s ease;
+}
+
+.book-card img {
+  height: 70%;
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: 1px 1px 2px 1px black;
+}
+
+
+.book-card .card-body {
+  padding: 0.4rem 0.6rem;
+}
+
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-card .card-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+
+
+.book-card .card-text {
+  line-height: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+
+
+.original-price {
+  text-decoration: line-through;
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+.selling-price {
+  font-weight: 500;
+  background-color: var(--accent);
+  padding: 0 0.2rem;
+  border-radius: 2px;
+}
+
+.book-card .btn {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* filter / sort icons */
+.fs-icons {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+
+  display: flex;
+  gap: 0.6rem;
+
+  padding: 0.5rem;
+  border-radius: 2rem;
+
+  background-color: var(--cards);
+  border: 1px solid var(--borders);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.fs-icon {
+  width: 2rem;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--background);
+  color: var(--primary);
+
+  border: 1px solid var(--borders);
+  border-radius: 50%;
+  padding: 0;
+
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+/* hover / tap feedback */
+.fs-icon:hover {
+  background-color: var(--primary-l-op);
+  transform: translateY(-1px);
+}
+
+/* active / pressed */
+.fs-icon:active {
+  transform: scale(0.95);
+}
+
+
+@media (max-width : 468px) {
+  .book-card .card-text {
+    line-height: 1rem;
+    font-size: 0.6rem;
+    font-weight: 300;
+    margin-bottom: 0rem;
+  }
+
+  .book-card .card-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .original-price {
+    font-size: 0.6rem;
+  }
+
+  /* .book-card {
+    margin-bottom: 1rem;
+  } */
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Filter panel
+========================= */
+
+.filter-panel {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 70vh;
+
+  background-color: var(--cards);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1200;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-panel-show {
+  animation: filter-slide-up 0.4s ease forwards;
+}
+
+.filter-panel-hide {
+  animation: filter-slide-down 0.4s ease forwards;
+}
+
+@keyframes filter-slide-up {
+  from {
+    bottom: -100%;
+  }
+
+  to {
+    bottom: 0;
+  }
+}
+
+@keyframes filter-slide-down {
+  from {
+    bottom: 0;
+  }
+
+  to {
+    bottom: -100%;
+  }
+}
+
+/* header */
+.filter-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--borders);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+/* body */
+.filter-body {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* footer */
+.filter-footer {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--borders);
+}
+
+/* =========================
+   Sort sheet
+========================= */
+
+.sort-sheet {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+
+  background-color: var(--cards);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1200;
+}
+
+.sort-sheet-show {
+  animation: sort-up 0.3s ease forwards;
+}
+
+.sort-sheet-hide {
+  animation: sort-down 0.3s ease forwards;
+}
+
+@keyframes sort-up {
+  from {
+    bottom: -40%;
+  }
+
+  to {
+    bottom: 0;
+  }
+}
+
+@keyframes sort-down {
+  from {
+    bottom: 0;
+  }
+
+  to {
+    bottom: -40%;
+  }
+}
+
+.sort-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--borders);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.sort-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-option {
+  padding: 0.9rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-weight: 500;
+  border-bottom: 1px solid var(--borders);
+}
+.sort-option a{
+  text-decoration: none;
+}
+
+.sort-option:hover {
+  background-color: var(--primary-l-op);
+}
+
+@media (min-width : 668px) {
+  .filter-panel {
+    width: 40%;
+    margin-left: 60%;
+  }
+
+  .sort-sheet {
+    width: 40%;
+    margin-left: 60%;
+  }
+}

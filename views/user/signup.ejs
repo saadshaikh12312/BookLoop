@@ -1,0 +1,108 @@
+<%- layout("layouts/boilerplate") %>
+
+<main>
+    <div class="signup-wrapper">
+        <div class="signup-card">
+
+            <!-- heading -->
+            <h1 class="signup-title">Create your account</h1>
+            <p class="signup-subtitle">
+                Exchange textbooks with students near you
+            </p>
+
+            <!-- signup form -->
+            <form class="signup-form needs-validation"
+                  action="/signup"
+                  method="POST"
+                  novalidate>
+
+                <!-- name row -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text"
+                                   name="user[name][firstName]"
+                                   required />
+                            <label>First Name</label>
+                            <div class="invalid-feedback">
+                                Please enter your first name
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text"
+                                   name="user[name][lastName]"
+                                   required />
+                            <label>Last Name</label>
+                            <div class="invalid-feedback">
+                                Please enter your last name
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <input type="text"
+                           name="user[username]"
+                           required />
+                    <label>Username</label>
+                    <div class="invalid-feedback">
+                        Please enter a user name 
+                    </div>
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <input type="email"
+                           name="user[email]"
+                           required />
+                    <label>Email Address</label>
+                    <div class="invalid-feedback">
+                        Please enter a valid email address
+                    </div>
+                </div>
+
+                <!-- mobile -->
+                <div class="form-group">
+                    <input type="tel"
+                           name="user[mobileNo]"
+                           pattern="[0-9]{10}"
+                           required />
+                    <label>Mobile Number</label>
+                    <div class="invalid-feedback">
+                        Enter a valid 10-digit mobile number
+                    </div>
+                </div>
+
+                <!-- password -->
+                <div class="form-group password-group">
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           minlength="6"
+                           required />
+                    <label>Password</label>
+                    <span class="toggle-password">👁</span>
+                    <div class="invalid-feedback">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+
+                <!-- submit -->
+                <button type="submit" class="btn signup-btn">
+                    Create Account
+                </button>
+
+                <!-- footer -->
+                <p class="form-footer">
+                    Already have an account?
+                    <a href="/login">Login</a>
+                </p>
+            </form>
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,32 @@
+@import "./variables.css";
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-nf-err {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.status {
+    font-size: 5rem;
+    color: rgba(128, 128, 128, 0.61);
+    font-synthesis-weight: bolder;
+}
+
+.error-msg {
+    font-size: 2rem;
+    color: grey;
+    font-weight: 400;
+}
+
+.alert.error-alert {
+    flex: 0 0 auto;
+    min-width: 22rem !important;
+    max-width: 40rem !important;
+}

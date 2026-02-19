@@ -1,0 +1,98 @@
+<!-- main navbar -->
+<nav class="">
+  <div class="navbar navbar-expand-lg bl-navbar">
+    <div class="container-fluid">
+
+      <!-- show user icon on left side in small screnn size -->
+      <div class="account-icon account-icon-sm">
+        <i class="fa-solid fa-user user-icon"></i>
+      </div>
+
+      <!-- user icon -> items -->
+      <div class="user-toggler">
+        <% if(!currUser){ %>
+
+        <!-- when user is not logged in  -->
+        <!-- show signup/login btns if user is not logged in -->
+        <div class="d-flex bl-auth-actions mt-4 row">
+          <a href="/signup" class="btn bl-btn bl-btn-light col-5 ms-2">
+            Signup
+          </a>
+          <a href="/login" class="btn bl-btn bl-btn-outline-light ms-2 col-6">
+            Login
+          </a>
+        </div>
+        <% } %>
+
+        <!-- when user is logged in  -->
+        <% if(currUser){ %>
+        <!-- items in user toggler -->
+        <div class="navbar-nav bl-nav-links align-items-start">
+          <a class="nav-link" href="/mybooks">My books</a>
+          <a class="nav-link" href="/books/new">Host a book</a>
+          <a class="nav-link position-relative w-100" href="/<%= currUser._id   %>/messages">
+            Messages
+            <% if (currUser && currUser.messages.some(m => m.status === "unread")) { %>
+            <i class="fa-solid fa-circle notification-circle notification-circle-msg"></i>
+            <% } %>
+          </a>
+        </div>
+
+        <!-- show logout btn if user is logged in -->
+        <div class="d-flex bl-auth-actions ">
+          <form action="/logout" method="post" class="bc-n w-100 mb-4 mt-3 row">
+            <button class="btn bl-btn bl-btn-outline-light col-6 ms-2">Logout</button>
+          </form>
+        </div>
+        <% } %>
+      </div>
+
+      <!-- brand || Logo -->
+      <a class="navbar-brand " href="/books">
+        <img src="https://res.cloudinary.com/djufaockt/image/upload/v1771445127/logo_vvepr4.png" alt="BookLoop" class="bl-brand-img">
+      </a>
+
+      <!-- mobile toggle -->
+      <button class="navbar-toggler bl-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars menu-icon"></i>
+      </button>
+
+      <!-- nav content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- left links -->
+        <div class="navbar-nav bl-nav-links">
+          <a class="nav-link active" href="/books">Browse</a>
+          <a class="nav-link" href="/books/new">Host a book</a>
+          <a class="nav-link" href="/mybooks">My listed book</a>
+
+          <form class="d-flex nav-search display-none" role="search">
+            <input class="form-control nav-search-input" name="q" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success nav-search-btn" type="submit">Search</button>
+          </form>
+        </div>
+
+        <div class="account-icon account-icon-lg">
+          <i class="fa-solid fa-user user-icon"></i>
+
+          <% if (currUser && currUser.messages.some(m => m.status === "unread")) { %>
+          <i class="fa-solid fa-circle notification-circle"></i>
+          <% } %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-info-strip">
+    <p class="nav-info-text">
+      Where books find another reader
+    </p>
+  </div>
+</nav>
+<div class="mb-search position-sticky">
+  <form class="d-flex nav-search" role="search">
+    <input class="form-control nav-search-input" name="q" type="search" placeholder="Search" aria-label="Search" />
+    <button class="btn btn-outline-success nav-search-btn" id="nav-search-btn" type="submit">Search</button>
+  </form>
+</div>

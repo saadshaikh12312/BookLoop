@@ -1,0 +1,145 @@
+<% layout("layouts/boilerplate") %>
+
+<main class="row">
+  <form action="/books/<%= book._id %>?_method=PUT" method="post" class="col-12 col-lg-8 offset-lg-2 " enctype="multipart/form-data">
+    <h2 class="book-heading">Edit Book Details</h2>
+
+    <!-- Book Title -->
+    <div class="mb-2">
+      <label class="form-label">Book Title</label>
+      <input type="text" class="form-control" value="<%= book.title %>" name="book[title]" required>
+    </div>
+
+    <!-- Subject -->
+    <div class="mb-2">
+      <label class="form-label">Subject</label>
+      <input type="text" class="form-control" name="book[subject]" value="<%= book.subject %>" required>
+    </div>
+
+    <!-- Subject Code -->
+    <div class="mb-2">
+      <label class="form-label">Subject Code</label>
+      <input type="text" value="<%= book.subjectCode%>" class="form-control" name="book[subjectCode]">
+    </div>
+
+    <!-- Description -->
+    <div class="mb-2">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="book[description]" rows="3"><%= book.description %></textarea>
+    </div>
+
+    <div class="row">
+      <!-- Course -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Course</label>
+        <select class="form-select" name="book[course]" required>
+          <option value="<%= book.course %>" hidden><%= book.course%></option>
+          <option>BSc</option>
+          <option>BCA</option>
+          <option>BCom</option>
+          <option>BA</option>
+          <option>BTech</option>
+          <option>BE</option>
+          <option>MCA</option>
+          <option>MSc</option>
+          <option>MBA</option>
+        </select>
+      </div>
+
+      <!-- semister -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Semester</label>
+        <select class="form-select" name="book[sem]">
+          <option value="<%= book.sem%>" hidden><%= book.sem %></option>
+          <option value="sem-1">Semester 1</option>
+          <option value="sem-2">Semester 2</option>
+          <option value="sem-3">Semester 3</option>
+          <option value="sem-4">Semester 4</option>
+          <option value="sem-5">Semester 5</option>
+          <option value="sem-6">Semester 6</option>
+          <option value="sem-7">Semester 7</option>
+          <option value="sem-8">Semester 8</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- University -->
+    <div class="mb-2">
+      <label class="form-label">University</label>
+      <input type="text" class="form-control" value="<%= book.university %>" name="book[university]">
+    </div>
+
+    <div class="row">
+      <!-- Publication -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Publication</label>
+        <input type="text" class="form-control" value="<%= book.publication %>" name="book[publication]">
+      </div>
+
+      <!-- Book Condition -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Book Condition</label>
+        <select class="form-select" name="book[condition]" required>
+          <option value="<%= book.condition %>" hidden><%= book.condition %></option>
+          <option value="new">New</option>
+          <option value="like new">Like New</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Prices -->
+    <div class="row">
+      <div class="mb-2 col-md-6">
+        <label class="form-label">Actual Price (₹)</label>
+        <input type="number" class="form-control" name="book[price][actualPrice]" value="<%= book.price.actualPrice %>" min="0" required>
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label">Selling Price (₹)</label>
+        <input type="number" value="<%= book.price.sellingPrice%>" class="form-control" name="book[price][sellingPrice]" min="0" required>
+      </div>
+    </div>
+
+    <!-- Exchange Type -->
+    <div class="mb-2">
+      <label class="form-label">Exchange Type</label>
+      <select class="form-select" name="book[exchangetype]" required>
+        <option value="<%= book.exchangetype %>" hidden><%= book.title %></option>
+        <option value="sell">Sell</option>
+        <option value="exchange">Exchange</option>
+        <option value="donate">Donate</option>
+      </select>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-2">
+      <label class="form-label">Location</label>
+      <input type="text" class="form-control" value="<%= book.location%>" name="book[location]" required>
+    </div>
+
+    <!-- Owner Name -->
+    <div class="mb-2">
+      <label class="form-label">Owner Name</label>
+      <input type="text" class="form-control" value="<%= book.ownerName %>" name="book[ownerName]">
+    </div>
+
+    <!-- image -->
+    <div class="mb-2">
+      <label class="form-label">Upload image</label>
+      <input type="file" accept="image/*" class="form-control" name="book[image]" value="<%= book.image.url %>" required>
+    </div>
+
+    <div class="sp-btns">
+      <!-- Submit -->
+      <button type="submit" class="btn mt-2 btn-pr">
+        Edit Book
+      </button>
+      <button type="reset" class="btn btn-outline-danger mt-2 ms-2">reset</button>
+    </div>
+
+  </form>
+
+</main>

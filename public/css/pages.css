@@ -1,0 +1,91 @@
+@import "./variables.css";
+
+/* =========================
+   Contact Page
+========================= */
+
+.contact-page {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* header */
+.contact-header {
+    margin-bottom: 2rem;
+}
+
+.contact-title {
+    color: var(--main-text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+}
+
+/* form */
+.contact-form {
+    background-color: var(--cards);
+    border: 1px solid var(--borders);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* labels */
+.contact-form .form-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    margin-bottom: 0.25rem;
+}
+
+/* inputs */
+.contact-form .form-control {
+    border-radius: 8px;
+    border: 1px solid var(--borders);
+    font-size: 0.9rem;
+    color: var(--main-text);
+}
+
+.contact-form .form-control::placeholder {
+    color: var(--muted-text);
+}
+
+/* focus */
+.contact-form .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.15rem var(--focus-ring);
+}
+
+/* actions */
+.contact-actions {
+    margin-top: 1.25rem;
+    text-align: right;
+}
+
+/* primary button */
+.btn-pr {
+    background-color: var(--primary);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-pr:hover {
+    background-color: var(--primary-h-op);
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 576px) {
+    .contact-form {
+        padding: 1.25rem 1rem;
+    }
+
+    .contact-actions {
+        text-align: center;
+    }
+}

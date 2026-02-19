@@ -1,0 +1,75 @@
+/* =========================
+   Messages Page
+========================= */
+
+.messages-page {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+/* title */
+.messages-title {
+    color: var(--main-text);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* section */
+.messages-section-title {
+    color: var(--secondary-text);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+/* card */
+.message-card {
+    background-color: var(--cards);
+    border: 1px solid var(--borders);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* unread highlight */
+.message-card.unread {
+    border-left: 4px solid var(--primary);
+    background-color: var(--primary-l-op);
+}
+
+/* read message */
+.message-card.read {
+    opacity: 0.9;
+}
+
+/* text */
+.message-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--main-text);
+}
+
+/* actions */
+.message-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* read label */
+.message-read-label {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+}
+
+/* buttons */
+.btn-pr {
+    background-color: var(--primary);
+    border: none;
+}
+
+.btn-pr:hover {
+    background-color: var(--primary-h-op);
+}

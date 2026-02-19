@@ -1,0 +1,59 @@
+<%- layout("/layouts/boilerplate") %>
+
+<main class="container messages-page">
+
+  <h2 class="messages-title">Messages</h2>
+
+  <!-- UNREAD MESSAGES -->
+  <section class="messages-section">
+    <h5 class="messages-section-title">Unread</h5>
+
+    <% for(let message of currUser.messages){ %>
+    <% if(message.status === "unread"){ %>
+
+    <div class="message-card unread">
+      <p class="message-text">
+        <%= message.message %>
+      </p>
+
+      <div class="message-actions">
+        <% if(message.type === "request") { %>
+        <a href="/request/<%= message.request %>/accept" class="btn btn-pr btn-sm">Accept</a>
+        <a href="/request/<%= message.request %>/reject" class="btn btn-outline-danger btn-sm">Reject</a>
+        <% } else { %>
+        <a href="/request/<%= message.request %>/seen" class="btn btn-outline-success btn-sm">Go to book</a>
+        <% } %>
+      </div>
+    </div>
+
+    <% } %>
+    <% } %>
+  </section>
+
+  <!-- READ MESSAGES -->
+  <section class="messages-section mt-4">
+    <h5 class="messages-section-title">Read</h5>
+
+    <% for(let message of currUser.messages){ %>
+    <% if(message.status === "read"){ %>
+
+    <div class="message-card read">
+      <p class="message-text">
+        <%= message.message %>
+      </p>
+
+      <div class="message-actions">
+        <% if(message.type === "request"){ %>
+        <button class="btn btn-outline-secondary btn-sm">Accept</button>
+        <button class="btn btn-outline-danger btn-sm">Reject</button>
+        <% } else { %>
+        <span class="message-read-label">Seen</span>
+        <% } %>
+      </div>
+    </div>
+
+    <% } %>
+    <% } %>
+  </section>
+
+</main>

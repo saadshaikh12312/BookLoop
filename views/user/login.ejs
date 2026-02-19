@@ -1,0 +1,49 @@
+<%- layout("layouts/boilerplate") %>
+
+<main>
+  <div class="signup-wrapper">
+    <div class="signup-card">
+
+      <!-- heading -->
+      <h1 class="signup-title">Login your account</h1>
+      <p class="signup-subtitle">
+        Exchange textbooks with students near you
+      </p>
+
+      <!-- login form -->
+      <form class="signup-form needs-validation" action="/login" method="POST" novalidate>
+
+        <!-- username  -->
+        <div class="form-group">
+          <input type="text" name="username" required />
+          <label>Username</label>
+          <div class="invalid-feedback">
+            Please enter a username
+          </div>
+        </div>
+
+        <!-- password -->
+        <div class="form-group password-group">
+          <input type="password" id="password" name="password" minlength="6" required />
+          <label>Password</label>
+          <span class="toggle-password">👁</span>
+          <div class="invalid-feedback">
+            Password must be at least 6 characters
+          </div>
+        </div>
+
+        <!-- submit -->
+        <button type="submit" class="btn signup-btn">
+          Login
+        </button>
+
+        <!-- footer -->
+        <p class="form-footer">
+          Create an account?
+          <a href="/signup">Signup</a>
+        </p>
+      </form>
+
+    </div>
+  </div>
+</main>

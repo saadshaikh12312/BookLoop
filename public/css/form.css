@@ -1,0 +1,69 @@
+@import "./variables.css";
+
+.row > form {
+    padding: 1.5rem;
+    background-color: var(--cards);
+    border: 1px solid var(--borders);
+    border-radius: 10px;
+}
+
+.book-heading {
+    margin-bottom: 1rem;
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+.form-label {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid var(--borders);
+    font-size: 0.9rem;
+    color: var(--main-text);
+}
+
+.form-control::placeholder {
+    color: var(--muted-text);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.15rem var(--focus-ring);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.sp-btns {
+    margin-top: 1rem;
+}
+
+.btn-pr {
+    background-color: var(--primary);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-pr:hover {
+    background-color: var(--primary-h-op);
+}
+
+/* reset button already has bootstrap outline-danger */
+@media (max-width: 768px) {
+    main.row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row > form {
+        padding: 1.25rem 1rem;
+    }
+}

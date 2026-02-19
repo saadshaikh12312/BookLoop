@@ -1,0 +1,32 @@
+:root {
+    /* Surfaces */
+    --background: #F3E8DD;
+    --cards: #FAF7F2;
+    --borders: #e5e1dc;
+
+    /* Text */
+    --main-text: #2b2b2b;
+    --secondary-text: #5f5f5f;
+    --muted-text: #8a8a8a;
+
+    /* Brand */
+    --primary: #BF6F2F;
+    --primary-h-op: #a85e26;
+    --primary-l-op: #f2b185;
+
+    /* Accent */
+    --accent: #FFA502;
+
+    /* States */
+    --success: #2e7d32;
+    --error: #c62828;
+    --warning: #ed6c02;
+    --focus-ring: rgba(191, 111, 47, 0.35);
+
+    /* Breakpoints */
+    --mobile-sz: 480px;
+    --tablet-sz: 768px;
+
+    /* Logo  */
+    --logo: #6f4c47;
+}

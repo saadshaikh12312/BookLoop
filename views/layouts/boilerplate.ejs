@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("../includes/head") %>
+</head>
+
+<body>
+  <!-- page header  -->
+  <%- include("../partials/navbar") %>
+
+  <div class="connect-flash position-relative">
+    <!-- show success flash message -->
+    <% if(success.length){ %>
+    <div class="alert alert-success alert-dismissible fade show position-absolute z-2 flash flash-success" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+
+    <!-- show error flash message -->
+    <% if(error.length){ %>
+    <div class="alert alert-danger alert-dismissible fade show position-absolute z-2 flash flash-danger" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+  </div>
+
+  <!-- body injected here  -->
+  <%- body %>
+
+  <!-- page footer  -->
+  <%- include("../partials/footer") %>
+
+  <!-- global and page specific js inserted here -->
+  <%- include("../includes/foot") %>
+</body>
+
+</html>

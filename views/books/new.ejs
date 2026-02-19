@@ -1,0 +1,147 @@
+<% layout("layouts/boilerplate") %>
+
+<main class="row">
+  <form action="/books" method="post" class="col-12 col-lg-8 offset-lg-2" enctype="multipart/form-data">
+    <h2 class="book-heading">Add New Book</h2>
+
+    <!-- Book Title -->
+    <div class="mb-2">
+      <label class="form-label">Book Title</label>
+      <input type="text" class="form-control" placeholder="e.g. Java Programming II" name="book[title]" required>
+    </div>
+
+    <!-- Subject -->
+    <div class="mb-2">
+      <label class="form-label">Subject</label>
+      <input type="text" class="form-control" name="book[subject]" placeholder="e.g. Computer Science" required>
+    </div>
+
+    <!-- Subject Code -->
+    <div class="mb-2">
+      <label class="form-label">Subject Code</label>
+      <input type="text" placeholder="e.g. CS-501" class="form-control" name="book[subjectCode]">
+    </div>
+
+    <!-- Description -->
+    <div class="mb-2">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="book[description]" placeholder="e.g. Mention book condition, usage duration, highlights or notes (if any), and any important details a buyer should know.
+" rows="3"></textarea>
+    </div>
+
+    <div class="row">
+      <!-- Course -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Course</label>
+        <select class="form-select" name="book[course]" required>
+          <option value="">Select course</option>
+          <option>BSc</option>
+          <option>BCA</option>
+          <option>BCom</option>
+          <option>BA</option>
+          <option>BTech</option>
+          <option>BE</option>
+          <option>MCA</option>
+          <option>MSc</option>
+          <option>MBA</option>
+        </select>
+      </div>
+
+      <!-- semister -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Semester</label>
+        <select class="form-select" name="book[sem]">
+          <option value="">Select semester</option>
+          <option value="sem-1">Semester 1</option>
+          <option value="sem-2">Semester 2</option>
+          <option value="sem-3">Semester 3</option>
+          <option value="sem-4">Semester 4</option>
+          <option value="sem-5">Semester 5</option>
+          <option value="sem-6">Semester 6</option>
+          <option value="sem-7">Semester 7</option>
+          <option value="sem-8">Semester 8</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- University -->
+    <div class="mb-2">
+      <label class="form-label">University</label>
+      <input type="text" class="form-control" placeholder="e.g. North Maharashtra University  || NMU " name="book[university]">
+    </div>
+
+    <div class="row">
+      <!-- Publication -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Publication</label>
+        <input type="text" class="form-control" placeholder="e.g. Prashant Publication" name="book[publication]">
+      </div>
+
+      <!-- Book Condition -->
+      <div class="mb-2 col-lg-6">
+        <label class="form-label">Book Condition</label>
+        <select class="form-select" name="book[condition]" required>
+          <option value="">Select condition</option>
+          <option value="new">New</option>
+          <option value="like new">Like New</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Prices -->
+    <div class="row">
+      <div class="mb-2 col-md-6">
+        <label class="form-label">Actual Price (₹)</label>
+        <input type="number" class="form-control" name="book[price][actualPrice]" placeholder="e.g. 500" min="0" required>
+      </div>
+
+      <div class="mb-2 col-md-6">
+        <label class="form-label">Selling Price (₹)</label>
+        <input type="number" placeholder="e.g. 200" class="form-control" name="book[price][sellingPrice]" min="0" required>
+      </div>
+    </div>
+
+    <!-- Exchange Type -->
+    <div class="mb-2">
+      <label class="form-label">Exchange Type</label>
+      <select class="form-select" name="book[exchangetype]" required>
+        <option value="">Select type</option>
+        <option value="sell">Sell</option>
+        <option value="exchange">Exchange</option>
+        <option value="donate">Donate</option>
+      </select>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-2">
+      <label class="form-label">Location</label>
+      <input type="text" class="form-control" placeholder="Enter your location" name="book[location]" required>
+    </div>
+
+    <!-- Owner Name -->
+    <div class="mb-2">
+      <label class="form-label">Owner Name</label>
+      <input type="text" class="form-control" placeholder="Enter yopur name " name="book[ownerName]">
+    </div>
+
+    <!-- image -->
+    <div class="mb-2">
+      <label class="form-label">Upload image<label>
+          <input type="file" accept="image/*" class="form-control" name="book[image]" placeholder="Paste image URL here ... " required>
+    </div>
+    
+
+    <div class="sp-btns">
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary mt-2 btn-pr">
+        Add Book
+      </button>
+      <button type="reset" class="btn btn-outline-danger mt-2 ms-2">reset</button>
+    </div>
+
+  </form>
+
+</main>
