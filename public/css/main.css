@@ -417,6 +417,7 @@ main {
     border-radius: 50%;
     background-color: var(--cards);
     color: var(--primary);
+    text-decoration: none;
 
     font-size: 0.95rem;
     transition: all 0.25s ease;

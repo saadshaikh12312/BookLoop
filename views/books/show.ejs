@@ -35,7 +35,7 @@
         <% if(currUser && currUser._id.equals(book.owner)){ %>
         <a href="/books/<%= book._id %>/edit" class="btn btn-pr ms-2 mt-2 col-4 mb-2">edit</a>
         <form action="/books/<%= book._id %>?_method=DELETE" method="post" class="col-4">
-          <button type="submit" class="btn btn-danger mt-2 ms-1 mb-2 ">delete</button>
+          <button type="submit" class="btn btn-danger mt-2 ms-1 mb-2 sold">sold</button>
         </form>
         <% } else if (currUser) { %>
         <% if (requestStatus === "pending") { %>

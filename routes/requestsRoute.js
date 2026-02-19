@@ -13,14 +13,14 @@ router.get(
 router.get(
     "/:id/accept",
     isLoggedIn,
-    isAlreadyChecked,
+    wrapAsync(isAlreadyChecked),
     wrapAsync(requestController.acceptRequest)
 )
 
 router.get(
     "/:id/reject",
     isLoggedIn,
-    isAlreadyChecked,
+    wrapAsync(isAlreadyChecked),
     wrapAsync(requestController.rejectRequest)
 
 )
