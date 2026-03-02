@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require("express");
 const mongoose = require('mongoose');
 const ExpErrors = require("./middlewares/ExpErrors.js");
@@ -70,7 +70,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     res.locals.redirectUrl = req.session.redirectUrl;
-
+    res.locals.currentPath = req.path;
     next();
 })
 
@@ -83,10 +83,6 @@ function connect_db(db) {
 }
 connect_db(dbUrl);
 
-
-
-
-
 // -------------------- Routes --------------------
 
 // books routes
@@ -98,17 +94,11 @@ app.use("/mybooks", usersBookRoute);
 // request routes
 app.use("/request", requestsRoute);
 
-// pages routes
-app.use("/", pagesRoute);
-
 // users routes
 app.use("/", usersRoute)
 
-app.get("/", (req, res) => {
-    res.redirect("/books");
-})
-
-
+// pages routes
+app.use("/", pagesRoute);
 
 
 app.listen(port, () => console.log(`Server running on port ${port} 🔥`));

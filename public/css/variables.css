@@ -29,4 +29,9 @@
 
     /* Logo  */
     --logo: #6f4c47;
+
+    /* labels */
+    --sell: rgb(23, 179, 23);
+    --exchange: rgb(36, 36, 255);
+    --donate: rgb(238, 56, 238);
 }

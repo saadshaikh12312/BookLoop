@@ -7,6 +7,15 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+#page-transition {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#page-transition.show {
+    opacity: 1;
+}
+
 body {
     background-color: var(--background) !important;
     color: var(--secondry-text);
@@ -44,6 +53,16 @@ main {
 .bl-navbar {
     background-color: var(--primary);
     padding: 0.8rem 1.25rem;
+    transform: translateY(-20px);
+    opacity: 0;
+    animation: navReveal 0.6s ease forwards;
+}
+
+@keyframes navReveal {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* brand text */
@@ -79,6 +98,7 @@ main {
     height: 2px;
     background-color: var(--accent);
 }
+
 
 /*    Buttons */
 .bl-btn {

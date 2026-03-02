@@ -2,7 +2,22 @@
 
 <main class="container ">
 
-  <h2 class="page-heading"><%= heading %></h2>
+  <!-- if no books are found  -->
+  <% if(books.length===0){ %>
+  <div class="empty-state text-center">
+    <h5>No books found</h5>
+    <p class="text-muted">
+      Try listing a book or explore other listings.
+    </p>
+    <a href="/books/new" class="btn btn-pr">
+      Host a Book
+    </a>
+  </div>
+  <% } else {%>
+
+  <h2 class="page-heading">
+    <%= heading %>
+  </h2>
 
   <div class="fs-icons">
     <button class="fs-icon filter">
@@ -13,6 +28,7 @@
     </button>
   </div>
 
+  <!-- all books cards  -->
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xxl-5 g-3">
     <% for (let book of books) { %>
     <div class="col d-flex justify-content-center">
@@ -20,9 +36,15 @@
 
         <img src="<%= book.image.url %>" class="card-img-top" alt="book image" loading="lazy">
 
+        <div class="label <%= book.exchangetype %>"><%= book.exchangetype %></div>
+
         <div class="card-body">
-          <h5 class="card-title"><%= book.title %></h5>
-          <p class="card-text"><%= book.subject %></p>
+          <h5 class="card-title">
+            <%= book.title %>
+          </h5>
+          <p class="card-text">
+            <%= book.subject %>
+          </p>
 
           <p class="card-text">
             <span class="original-price">
@@ -95,7 +117,6 @@
 
   </form>
 
-
   <!-- sort sheet -->
   <div class="sort-sheet">
     <div class="sort-header">
@@ -115,5 +136,6 @@
       </a>
     </div>
   </div>
+  <% } %>
 
 </main>

@@ -1,0 +1,185 @@
+@import "./variables.css";
+
+/* ===============================
+   RESET
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   LAYOUT
+================================= */
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+
+    background:
+        linear-gradient(135deg,
+            var(--primary),
+            var(--primary-h-op));
+
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===============================
+   PREMIUM AMBIENT GLOW
+================================= */
+
+.container::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+
+    background: var(--primary-l-op);
+    border-radius: 50%;
+    filter: blur(120px);
+
+    opacity: 0.6;
+
+    animation: ambientFloat 14s ease-in-out infinite;
+}
+
+@keyframes ambientFloat {
+    0% {
+        transform: translate(-35%, -25%);
+    }
+
+    50% {
+        transform: translate(35%, 25%);
+    }
+
+    100% {
+        transform: translate(-35%, -25%);
+    }
+}
+
+/* ===============================
+   LOGO
+================================= */
+
+.logo {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: logoReveal 1s ease forwards;
+}
+
+.logo-img {
+    width: 15rem;
+    object-fit: contain;
+
+    animation: logoFloat 5s ease-in-out infinite;
+}
+
+@keyframes logoReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* subtle premium motion */
+@keyframes logoFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   TAGLINES
+================================= */
+
+.tagline {
+    opacity: 0;
+    letter-spacing: 0.3px;
+}
+
+/* main message */
+.tg-main {
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: #fff;
+
+    animation: textFadeUp 1s ease forwards;
+    animation-delay: 0.9s;
+}
+
+/* secondary message */
+.tg-secondary {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+
+    animation: textFadeUp 1s ease forwards;
+    animation-delay: 1.5s;
+}
+
+/* elegant fade */
+@keyframes textFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   SOFT DEPTH OVERLAY
+================================= */
+
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at center,
+            transparent 55%,
+            rgba(0, 0, 0, 0.18));
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media (max-width:576px) {
+
+    .logo-img {
+        width: 11rem;
+    }
+
+    .tg-main {
+        font-size: 1.2rem;
+    }
+
+    .tg-secondary {
+        font-size: 1rem;
+    }
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}

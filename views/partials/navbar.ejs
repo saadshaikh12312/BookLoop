@@ -28,11 +28,16 @@
         <% if(currUser){ %>
         <!-- items in user toggler -->
         <div class="navbar-nav bl-nav-links align-items-start">
-          <a class="nav-link" href="/mybooks">My books</a>
-          <a class="nav-link" href="/books/new">Host a book</a>
-          <a class="nav-link position-relative w-100" href="/<%= currUser._id   %>/messages">
+          <a class="nav-link <%= currentPath.startsWith('/mybooks') ? 'active' : '' %>" href="/mybooks">
+            My books
+          </a>
+          <a class="nav-link <%= currentPath === '/books/new' ? 'active' : '' %>" href="/books/new">
+            Host a book
+          </a>
+          <a class="nav-link position-relative w-100
+             <%= currentPath.includes('messages') ? 'active' : '' %>" href="/<%= currUser._id %>/messages">
             Messages
-            <% if (currUser && currUser.messages.some(m => m.status === "unread")) { %>
+            <% if(currUser.messages.some(m => m.status === "unread")){ %>
             <i class="fa-solid fa-circle notification-circle notification-circle-msg"></i>
             <% } %>
           </a>
@@ -62,9 +67,11 @@
 
         <!-- left links -->
         <div class="navbar-nav bl-nav-links">
-          <a class="nav-link active" href="/books">Browse</a>
-          <a class="nav-link" href="/books/new">Host a book</a>
-          <a class="nav-link" href="/mybooks">My listed book</a>
+          <a class="nav-link <%= currentPath.startsWith('/books') && currentPath !== '/books/new' ? 'active' : '' %>" href="/books"> Browse </a>
+          <a class="nav-link <%= currentPath === '/books/new' ? 'active' : '' %>" href="/books/new"> Host a book </a>
+          <a class="nav-link <%= currentPath.startsWith('/mybooks') ? 'active' : '' %>" href="/mybooks"> My listed book </a>
+          <a class="nav-link <%= currentPath === '/about' ? 'active' : '' %>" href="/about"> About BookLoop </a>
+          <a class="nav-link <%= currentPath === '/contact' ? 'active' : '' %>" href="/contact"> Contact-us </a>
 
           <form class="d-flex nav-search display-none" role="search">
             <input class="form-control nav-search-input" name="q" type="search" placeholder="Search" aria-label="Search" />

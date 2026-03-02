@@ -1,3 +1,27 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document
+        .getElementById("page-transition")
+        .classList.add("show");
+});
+
+document.querySelectorAll("a[href]").forEach(link => {
+    link.addEventListener("click", function (e) {
+
+        const url = this.getAttribute("href");
+
+        if (url.startsWith("/") && !this.hasAttribute("target")) {
+            e.preventDefault();
+
+            const page = document.getElementById("page-transition");
+            page.classList.remove("show");
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        }
+    });
+});
+
 let navTogglerBtn = document.querySelector(".menu-icon");
 let collapse = document.querySelector(".navbar-collapse");
 let container = document.querySelector(".container-fluid");

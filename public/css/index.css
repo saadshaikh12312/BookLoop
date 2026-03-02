@@ -1,6 +1,86 @@
 @import "./variables.css";
 
 
+/* --------------------- if no books are found --------------------- */
+
+/* --------------------
+   Empty State
+-------------------- */
+
+main {
+  min-height: 0;
+}
+
+.empty-state {
+  min-height: 55vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 2rem 1rem;
+
+  background-color: var(--cards);
+  border: 1px dashed var(--borders);
+  border-radius: 12px;
+
+  gap: 0.6rem;
+}
+
+/* heading */
+.empty-state h5 {
+  color: var(--main-text);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+/* description */
+.empty-state p {
+  color: var(--secondry-text);
+  font-size: 0.9rem;
+  max-width: 420px;
+}
+
+/* button */
+.empty-state .btn {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 2rem;
+
+  padding: 0.45rem 1.4rem;
+  font-size: 0.85rem;
+
+  transition: all 0.25s ease;
+}
+
+.empty-state .btn:hover {
+  background-color: var(--primary-h-op);
+  transform: translateY(-2px);
+}
+
+/* decorative top line
+.empty-state::before {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-l-op);
+    border-radius: 5px;
+    margin-bottom: 0.4rem;
+} */
+
+/* mobile */
+@media (max-width: 576px) {
+  .empty-state {
+    min-height: 50vh;
+    padding: 1.5rem 1rem;
+  }
+}
+
+
+/* ------------------- if books are found --------------------- */
+
 .book-card {
   width: 100%;
   max-width: 220px;
@@ -21,6 +101,61 @@
   box-shadow: 1px 1px 2px 1px black;
 }
 
+/* --------------------
+   Card Label / Badge
+-------------------- */
+
+/* --------------------
+   Tag Label Shape
+-------------------- */
+
+.label {
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+
+  background-color: var(--primary);
+  color: #fff;
+
+  padding: 0.3rem 0.6rem 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* triangle cut */
+.label::after {
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: 0;
+
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+}
+
+.sell {
+  background-color: var(--sell);
+}
+
+.sell::after {
+  border-left: 10px solid var(--sell);
+}
+
+.exchange {
+  background-color: var(--exchange);
+}
+
+.exchange::after {
+  border-left: 10px solid var(--exchange);
+}
+
+.donate {
+  background-color: var(--donate);
+}
+
+.donate::after {
+  border-left: 10px solid var(--donate);
+}
 
 .book-card .card-body {
   padding: 0.4rem 0.6rem;
@@ -295,7 +430,8 @@ a {
   font-weight: 500;
   border-bottom: 1px solid var(--borders);
 }
-.sort-option a{
+
+.sort-option a {
   text-decoration: none;
 }
 
