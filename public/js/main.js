@@ -1,25 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-    document
-        .getElementById("page-transition")
-        .classList.add("show");
+// hide loader when page loads
+window.addEventListener("load", () => {
+    document.getElementById("page-loader")
+        .classList.add("hide");
 });
 
+// show loader when navigating
 document.querySelectorAll("a[href]").forEach(link => {
-    link.addEventListener("click", function (e) {
+
+    link.addEventListener("click", function () {
 
         const url = this.getAttribute("href");
 
-        if (url.startsWith("/") && !this.hasAttribute("target")) {
-            e.preventDefault();
+        if (
+            !url ||
+            url.startsWith("#") ||
+            url.startsWith("http") ||
+            this.target === "_blank"
+        ) return;
 
-            const page = document.getElementById("page-transition");
-            page.classList.remove("show");
-
-            setTimeout(() => {
-                window.location.href = url;
-            }, 300);
-        }
+        document
+            .getElementById("page-loader")
+            .classList.remove("hide");
     });
+
 });
 
 let navTogglerBtn = document.querySelector(".menu-icon");

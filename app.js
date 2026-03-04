@@ -1,4 +1,13 @@
-require('dotenv').config();
+// Load .env from parent directory first, before anything else
+const fs = require('fs');
+const path = require('path');
+const envPath = path.resolve(__dirname, '..', '.env');
+if (fs.existsSync(envPath)) {
+    require('dotenv').config({ path: envPath });
+} else {
+    require('dotenv').config();
+}
+
 const express = require("express");
 const mongoose = require('mongoose');
 const ExpErrors = require("./middlewares/ExpErrors.js");
@@ -16,7 +25,6 @@ const flash = require('connect-flash');
 const MongoStore = require('connect-mongo').default;
 const User = require("./models/userSchema.js");
 
-const path = require("path");
 const app = express();
 const dbUrl = process.env.ATLAS_DB_URL;
 const port = process.env.PORT;

@@ -71,7 +71,7 @@
           <a class="nav-link <%= currentPath === '/books/new' ? 'active' : '' %>" href="/books/new"> Host a book </a>
           <a class="nav-link <%= currentPath.startsWith('/mybooks') ? 'active' : '' %>" href="/mybooks"> My listed book </a>
           <a class="nav-link <%= currentPath === '/about' ? 'active' : '' %>" href="/about"> About BookLoop </a>
-          <a class="nav-link <%= currentPath === '/contact' ? 'active' : '' %>" href="/contact"> Contact-us </a>
+          <a class="nav-link <%= currentPath === '/contact' ? 'active' : '' %> show-contact" href="/contact"> Contact-us </a>
 
           <form class="d-flex nav-search display-none" role="search">
             <input class="form-control nav-search-input" name="q" type="search" placeholder="Search" aria-label="Search" />
