@@ -1,30 +1,3 @@
-// hide loader when page loads
-window.addEventListener("load", () => {
-    document.getElementById("page-loader")
-        .classList.add("hide");
-});
-
-// show loader when navigating
-document.querySelectorAll("a[href]").forEach(link => {
-
-    link.addEventListener("click", function () {
-
-        const url = this.getAttribute("href");
-
-        if (
-            !url ||
-            url.startsWith("#") ||
-            url.startsWith("http") ||
-            this.target === "_blank"
-        ) return;
-
-        document
-            .getElementById("page-loader")
-            .classList.remove("hide");
-    });
-
-});
-
 let navTogglerBtn = document.querySelector(".menu-icon");
 let collapse = document.querySelector(".navbar-collapse");
 let container = document.querySelector(".container-fluid");

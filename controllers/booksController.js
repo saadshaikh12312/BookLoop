@@ -2,7 +2,6 @@ const { cloudinary } = require("../cloudinaryConfig.js");
 const Book = require("../models/bookSchema.js");
 const User = require("../models/userSchema.js");
 
-
 // get route : index page / home page : show all books with search and filter options
 module.exports.index = async (req, res) => {
     let { q, sort } = req.query;
@@ -123,9 +122,7 @@ module.exports.showBook = async (req, res) => {
         if (requestStatus === "accepted") {
             const owner = await User.findById(book.owner);
 
-            const message = `Hi ${owner.name.firstName}, this is ${req.user.name.firstName}.
-            My request for the book "${book.title}" was accepted. 
-            I’m contacting you to proceed further.`;
+            const message = `Hi ${owner.name.firstName}, this is ${req.user.name.firstName}.\nMy request for the book "${book.title}" was accepted. I’m contacting you to proceed further.`;
 
             url = `https://wa.me/${owner.mobileNo}?text=${encodeURIComponent(message)}`;
         }
@@ -138,7 +135,6 @@ module.exports.showBook = async (req, res) => {
         url
     });
 };
-
 
 // get route : render edit form 
 module.exports.renderEditForm = async (req, res) => {

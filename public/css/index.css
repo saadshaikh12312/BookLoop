@@ -348,6 +348,12 @@ a {
   font-weight: 600;
 }
 
+.bl-navbar {
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: navReveal 0.6s ease forwards;
+}
+
 /* body */
 .filter-body {
   padding: 1rem;
@@ -363,9 +369,7 @@ a {
   border-top: 1px solid var(--borders);
 }
 
-/* =========================
-   Sort sheet
-========================= */
+/* ======================== Sort  ========================= */
 
 .sort-sheet {
   position: fixed;

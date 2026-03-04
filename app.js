@@ -1,14 +1,6 @@
-// Load .env from parent directory first, before anything else
-const fs = require('fs');
-const path = require('path');
-const envPath = path.resolve(__dirname, '..', '.env');
-if (fs.existsSync(envPath)) {
-    require('dotenv').config({ path: envPath });
-} else {
-    require('dotenv').config();
-}
-
+require('dotenv').config();
 const express = require("express");
+const path = require('path');
 const mongoose = require('mongoose');
 const ExpErrors = require("./middlewares/ExpErrors.js");
 const booksRoute = require("./routes/booksRoute.js");

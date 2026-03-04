@@ -7,52 +7,6 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-#page-loader {
-    position: fixed;
-    inset: 0;
-    background: #b86829;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
-
-    transition: opacity 0.4s ease, visibility 0.4s;
-}
-
-#page-loader.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader-content {
-    text-align: center;
-}
-
-.loader-logo {
-    width: 80px;
-    animation: floatLogo 2.5s ease-in-out infinite;
-}
-
-.loader-text {
-    margin-top: 0.5rem;
-    color: #fff;
-}
-
-@keyframes floatLogo {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
 
 body {
     background-color: var(--background) !important;
@@ -91,9 +45,6 @@ main {
 .bl-navbar {
     background-color: var(--primary);
     padding: 0.8rem 1.25rem;
-    transform: translateY(-20px);
-    opacity: 0;
-    animation: navReveal 0.6s ease forwards;
 }
 
 @keyframes navReveal {
