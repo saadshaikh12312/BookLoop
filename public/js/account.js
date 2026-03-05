@@ -21,4 +21,6 @@ const passwordInput = document.getElementById("password");
 toggle.addEventListener("click", () => {
     passwordInput.type =
         passwordInput.type === "password" ? "text" : "password";
+    document.querySelector(".eye").classList.toggle("fa-eye-slash");
+    document.querySelector(".eye").classList.toggle("fa-eye");
 });
