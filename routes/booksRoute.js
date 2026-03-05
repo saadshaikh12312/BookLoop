@@ -27,8 +27,8 @@ router.route("/")
     //new route : add a new book in DB
     .post(
         isLoggedIn,
-        upload.single("book[image]"),
         validateBook,
+        upload.single("book[image]"),
         wrapAsync(booksController.newBook)
     )
 
