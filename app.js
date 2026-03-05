@@ -1,5 +1,6 @@
 require('dotenv').config({ quiet: true });
 const express = require("express");
+const path = require('path');
 const mongoose = require('mongoose');
 const ExpErrors = require("./middlewares/ExpErrors.js");
 const booksRoute = require("./routes/booksRoute.js");
@@ -16,7 +17,6 @@ const flash = require('connect-flash');
 const MongoStore = require('connect-mongo').default;
 const User = require("./models/userSchema.js");
 
-const path = require("path");
 const app = express();
 const dbUrl = process.env.ATLAS_DB_URL;
 const port = process.env.PORT;
@@ -70,7 +70,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     res.locals.redirectUrl = req.session.redirectUrl;
-
+    res.locals.currentPath = req.path;
     next();
 })
 
@@ -83,10 +83,6 @@ function connect_db(db) {
 }
 connect_db(dbUrl);
 
-
-
-
-
 // -------------------- Routes --------------------
 
 // books routes
@@ -98,17 +94,11 @@ app.use("/mybooks", usersBookRoute);
 // request routes
 app.use("/request", requestsRoute);
 
-// pages routes
-app.use("/", pagesRoute);
-
 // users routes
 app.use("/", usersRoute)
 
-app.get("/", (req, res) => {
-    res.redirect("/books");
-})
-
-
+// pages routes
+app.use("/", pagesRoute);
 
 
 app.listen(port, () => console.log(`Server running on port ${port} 🔥`));

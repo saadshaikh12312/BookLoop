@@ -7,6 +7,7 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+
 body {
     background-color: var(--background) !important;
     color: var(--secondry-text);
@@ -46,6 +47,17 @@ main {
     padding: 0.8rem 1.25rem;
 }
 
+@keyframes navReveal {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.show-contact {
+    display: none;
+}
+
 /* brand text */
 .bl-brand-img {
     height: 3rem;
@@ -79,6 +91,7 @@ main {
     height: 2px;
     background-color: var(--accent);
 }
+
 
 /*    Buttons */
 .bl-btn {
@@ -778,6 +791,9 @@ main {
         margin-bottom: 0 !important;
     }
 
+    .show-contact {
+        display: inline-block;
+    }
 }
 
 /* slide animation */

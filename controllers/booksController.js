@@ -2,8 +2,8 @@ const { cloudinary } = require("../cloudinaryConfig.js");
 const Book = require("../models/bookSchema.js");
 const User = require("../models/userSchema.js");
 
+// get route : index page / home page : show all books with search and filter options
 module.exports.index = async (req, res) => {
-
     let { q, sort } = req.query;
 
     // search by title | subject | university | location
@@ -70,6 +70,7 @@ module.exports.index = async (req, res) => {
     }
 };
 
+// get route : render new book form
 module.exports.renderNewForm = (req, res) => {
     res.render("books/new", { pageStyle: "form" })
 };
@@ -101,7 +102,7 @@ module.exports.newBook = async (req, res) => {
     res.redirect("/books");
 };
 
-// GET: show a specific book
+// GET route : show a specific book
 module.exports.showBook = async (req, res) => {
     const { id } = req.params;
 
@@ -121,9 +122,7 @@ module.exports.showBook = async (req, res) => {
         if (requestStatus === "accepted") {
             const owner = await User.findById(book.owner);
 
-            const message = `Hi ${owner.name.firstName}, this is ${req.user.name.firstName}.
-            My request for the book "${book.title}" was accepted. 
-            I’m contacting you to proceed further.`;
+            const message = `Hi ${owner.name.firstName}, this is ${req.user.name.firstName}.\nMy request for the book "${book.title}" was accepted. I’m contacting you to proceed further.`;
 
             url = `https://wa.me/${owner.mobileNo}?text=${encodeURIComponent(message)}`;
         }
@@ -136,7 +135,6 @@ module.exports.showBook = async (req, res) => {
         url
     });
 };
-
 
 // get route : render edit form 
 module.exports.renderEditForm = async (req, res) => {
@@ -159,12 +157,13 @@ module.exports.editBook = async (req, res) => {
     let oldBook = await Book.findById(id);
     // deleting old image from cloudinary 
     if (req.file) {
-        try {   
+        try {
             // delete old image
             if (oldBook.image?.filename) {
                 await cloudinary.uploader.destroy(oldBook.image.filename);
+                console.log("Old image deleted from cloudinary");
             }
-
+            console.log(oldBook.image);
             // save new image info (already uploaded)
             book.image = {
                 url: req.file.path,
