@@ -7,7 +7,12 @@ const { wrapAsync } = require("../middlewares/wrapAsync.js");
 const { validateBookSchema } = require("../Schema/bookValidation.js");
 const { isLoggedIn, isOwner, isRequestAccepted } = require("../middlewares/authMiddlewares.js");
 
-const upload = multer({ storage });
+const upload = multer({
+    storage,
+    limits: {
+        fileSize: 500 * 1024   // 500KB
+    }
+});
 
 const validateBook = (req, res, next) => {
     const { error } = validateBookSchema.validate(req.body);

@@ -78,7 +78,11 @@ app.use((req, res, next) => {
 function connect_db(db) {
     mongoose
         .connect(db)
-        .then(() => console.log("💻 Mondodb Connected"))
+        .then(() => {
+            console.log("💻 Mondodb Connected");
+            app.listen(port, () => console.log(`Server running on port ${port} 🔥`));
+        }
+        )
         .catch(err => console.error(err));
 }
 connect_db(dbUrl);
@@ -111,8 +115,6 @@ app.get("/", (req, res) => {
 
 
 
-app.listen(port, () => console.log(`Server running on port ${port} 🔥`));
-
 // ----------------------- Error Handling Middlewares -----------------------
 
 // Page not found (NO err param)
@@ -125,6 +127,11 @@ app.use((err, req, res, next) => {
     if (err.name === "CastError") {
         err = new ExpErrors(400, "Invalid request. The requested resource does not exist.");
     }
+
+    if (err.code === "LIMIT_FILE_SIZE") {
+        return res.status(400).send("File size must be less than 500KB");
+    }
+
     next(err);
 });
 
@@ -143,7 +150,9 @@ app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "Something went wrong";
 
-    console.error(err);
+    if (err.status !== 404) {
+        console.error(err);
+    }
 
     res.status(statusCode).render("errors/error.ejs", {
         message,

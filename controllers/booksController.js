@@ -67,6 +67,9 @@ module.exports.index = async (req, res) => {
     if (books) {
         let heading = (Object.keys(filters).length) ? `Filtered :` : `Available Books `;
         return res.render("books/index", { books, pageStyle: "index", heading })
+    } else {        // Rare case : If no books available in databse 
+        heading = "No books avilable at this moment!"
+        return res.render("books/index", { books, pageStyle: "index", heading })
     }
 };
 
@@ -98,7 +101,7 @@ module.exports.newBook = async (req, res) => {
 
 
     req.flash("success", "your book added succesfully.");
-    res.redirect("/books");
+    return res.redirect("/books");
 };
 
 // GET: show a specific book
@@ -159,7 +162,7 @@ module.exports.editBook = async (req, res) => {
     let oldBook = await Book.findById(id);
     // deleting old image from cloudinary 
     if (req.file) {
-        try {   
+        try {
             // delete old image
             if (oldBook.image?.filename) {
                 await cloudinary.uploader.destroy(oldBook.image.filename);
