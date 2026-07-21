@@ -63,7 +63,7 @@ module.exports.index = async (req, res) => {
 
     let books = await Book.find(filters);
 
-    // if filter is applied then filtered books is send , otherwise all bokks are send
+    // if filter is applied then filtered books is send , otherwise all books are send
     if (books) {
         let heading = (Object.keys(filters).length) ? `Filtered :` : `Available Books `;
         return res.render("books/index", { books, pageStyle: "index", heading })
