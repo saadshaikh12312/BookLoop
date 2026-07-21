@@ -17,7 +17,7 @@ const validateBook = (req, res, next) => {
     next();
 }
 
-
+// route for books
 router.route("/")
     // home page: show all books
     .get(
@@ -39,6 +39,7 @@ router.get(
     booksController.renderNewForm
 );
 
+// route for specific book
 router.route("/:id")
     // show page : show details of specific book
     .get(

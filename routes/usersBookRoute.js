@@ -4,6 +4,7 @@ const usersBookController = require("../controllers/usersBookController.js");
 const { wrapAsync } = require("../middlewares/wrapAsync.js");
 const { isLoggedIn } = require("../middlewares/authMiddlewares.js");
 
+// route for user's books
 router.get(
     "/",
     isLoggedIn,

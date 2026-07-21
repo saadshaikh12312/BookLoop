@@ -22,13 +22,16 @@ const dbUrl = process.env.ATLAS_DB_URL;
 const port = process.env.PORT;
 
 
-// ---------------- middleware functions ----------------
+// ----------------------- middleware functions -----------------------
+
+//session store in mongoDB
 const store = new MongoStore({
     mongoUrl: dbUrl,
     touchAfter: 24 * 3600,
     ttl: 604800,
 })
 
+// session configuration
 const sessionOption = session({
     secret: process.env.SESSION_SECRET,
     store,
@@ -41,47 +44,59 @@ const sessionOption = session({
     }
 });
 
-// ---------------- middlewares ----------------
-
-app.engine("ejs", ejsMate);
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, ("views")));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(methodOverride("_method"))
-app.use(express.static(path.join(__dirname, "public")));
-app.use((req, res, next) => {
-    res.locals.title = "BookLoop";
-    next();
-});
-app.use(sessionOption);
-app.use(flash());
-
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser());
-
-// storing flash data in res.locals
-app.use((req, res, next) => {
+// flash data middleware
+const flashDataMiddleware = (req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     res.locals.redirectUrl = req.session.redirectUrl;
     res.locals.currentPath = req.path;
     next();
-})
+}
 
 
+// ----------------------- view engine and views directory -----------------------
+
+app.engine("ejs", ejsMate);     // use ejs-mate for all ejs templates  
+app.set("view engine", "ejs");      // set view engine to ejs
+app.set("views", path.join(__dirname, ("views")));      // set views directory to /views
+
+
+// ----------------------- middlewares -----------------------
+
+app.use(express.urlencoded({ extended: true }));        // parse incoming request bodies with urlencoded payloads
+app.use(express.json());        // parse incoming request bodies with JSON payloads
+app.use(methodOverride("_method")) ;        // override HTTP methods using query parameter _method
+app.use(express.static(path.join(__dirname, "public")));        // serve static files from /public directory
+app.use((req, res, next) => {       // set default title for all pages
+    res.locals.title = "BookLoop";
+    next();
+});
+app.use(sessionOption);     // use session middleware with the configured options
+app.use(flash());           // use flash middleware for storing flash messages in session
+
+// ----------------------- passport configuration - middlewares -----------------------
+app.use(passport.initialize());     // initialize passport middleware for authentication
+app.use(passport.session());        // use passport session middleware to persist login sessions
+passport.use(new localStrategy(User.authenticate()));   // use local strategy for authentication with the User model
+passport.serializeUser(User.serializeUser())        // serialize user instance to the session
+passport.deserializeUser(User.deserializeUser());       // deserialize user instance from the session
+
+// storing flash data in res.locals
+app.use(flashDataMiddleware);
+
+
+// ----------------------- database connection -----------------------
 function connect_db(db) {
     mongoose
-        .connect(db)
+        .connect(db, { serverSelectionTimeoutMS: 5000 })
         .then(() => console.log("💻 Mondodb Connected"))
-        .catch(err => console.error(err));
+        .catch(err => {
+            console.error("MongoDB connection failed:", err.message || err);
+        });
 }
 connect_db(dbUrl);
+
 
 // -------------------- Routes --------------------
 

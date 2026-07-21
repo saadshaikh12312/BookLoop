@@ -78,16 +78,19 @@ module.exports.renderNewForm = (req, res) => {
 // post route : adds a new book in DB
 module.exports.newBook = async (req, res) => {
     let { path, filename } = req.file;
+
+    // added path and filename of uploaded image to book object
     let book = new Book(req.body.book);
     book.image = {
         url: path,
         filename: filename
     }
     book.owner = req.user._id;      // saved user's id in book -> owner
-    let savedData = await book.save();
+    let savedData = await book.save();      // saved book in DB
 
     console.log(savedData)
 
+    // if book is not saved in DB , redirect to new book form
     if (!savedData) {
         req.flash("error", "some error occured! Please try again later.");
         return res.redirect("/books/new");
@@ -107,6 +110,8 @@ module.exports.showBook = async (req, res) => {
     const { id } = req.params;
 
     const book = await Book.findById(id);
+
+    // if book is not found in DB , redirect to books index page
     if (!book) {
         req.flash("error", "The book you are trying to access is no longer available.");
         return res.redirect("/books");
@@ -115,6 +120,7 @@ module.exports.showBook = async (req, res) => {
     let requestStatus = null;
     let url = null;
 
+    // if user has sent a request for this book , then show the status of that request
     if (req.session.requestStatus) {
         requestStatus = req.session.requestStatus;
         delete req.session.requestStatus;
@@ -128,6 +134,7 @@ module.exports.showBook = async (req, res) => {
         }
     }
 
+    //redirect to show page with book details and request status
     res.render("books/show", {
         book,
         pageStyle: "show",
@@ -136,34 +143,38 @@ module.exports.showBook = async (req, res) => {
     });
 };
 
-// get route : render edit form 
+// GET route : render edit form 
 module.exports.renderEditForm = async (req, res) => {
     let { id } = req.params;
     let book = await Book.findById(id);
+
+    // if book is not found in DB , redirect to books index page
     if (!book) {
         req.flash("error", "the book you are trying to access is no longer available.");
         return res.redirect("/books");
     }
+
     res.render("books/edit", { book, pageStyle: "form" });
 };
 
-// put route : edit the details of an existing book  
+// PUT route : edit the details of an existing book  
 module.exports.editBook = async (req, res) => {
     let { id } = req.params;
     let book = req.body.book;
     book.updatedAt = new Date();
 
-
+    // if new image is uploaded , delete old image from cloudinary and save new image info in DB
     let oldBook = await Book.findById(id);
     // deleting old image from cloudinary 
     if (req.file) {
         try {
-            // delete old image
+            // delete old image 
             if (oldBook.image?.filename) {
                 await cloudinary.uploader.destroy(oldBook.image.filename);
                 console.log("Old image deleted from cloudinary");
             }
             console.log(oldBook.image);
+
             // save new image info (already uploaded)
             book.image = {
                 url: req.file.path,
@@ -171,7 +182,7 @@ module.exports.editBook = async (req, res) => {
             }
 
         } catch (err) {
-            await cloudinary.uploader.destroy(req.file.filename);
+            await cloudinary.uploader.destroy(req.file.filename);  // delete newly uploaded image from cloudinary if error occurs
             req.flash("error", "Some error occured, please upload image again.");
             return res.redirect(`/books/${id}`);
         }
@@ -179,23 +190,34 @@ module.exports.editBook = async (req, res) => {
 
     let updatedBook = await Book.findByIdAndUpdate(id, book, { runValidators: true });
 
+    // if book is not found in DB , redirect to books index page
     if (!updatedBook) {
         req.flash("error", "the book you are trying to access is no longer available.");
         return res.redirect("/books");
     }
 
+    // redirect to show page with updated book details
     req.flash("success", "Updated successfully.");
     res.redirect(`/books/${id}`)
 }
 
-// delete route : delete an existing from DB
+// DELETE route : delete an existing book from DB
 module.exports.destroyBook = async (req, res) => {
     let { id } = req.params;
     let deletedBook = await Book.findByIdAndDelete(id);
+
+    // if book was deleted successfully , delete the image from cloudinary
+    if (deletedBook?.image?.filename) {
+        await cloudinary.uploader.destroy(deletedBook.image.filename);
+        console.log("Image deleted from cloudinary");
+    }
+
+    // if book is not found in DB , redirect to books index page
     if (!deletedBook) {
         req.flash("error", "the book you are trying to access is no longer available.");
         return res.redirect("/books");
     }
+
     req.flash("success", "Deleted successfully.");
     res.redirect("/books");
 }

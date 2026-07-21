@@ -5,20 +5,20 @@ const { wrapAsync } = require("../middlewares/wrapAsync.js");
 const passport = require("passport");
 const { isLoggedIn } = require("../middlewares/authMiddlewares.js");
 
+// route for user signup
 router.route("/signup")
     // render a signup form 
     .get(usersController.renderSignupForm)
 
     // add a user in DB
-    .post(
-        wrapAsync(usersController.signup)
-    );
+    .post(wrapAsync(usersController.signup));
 
+// route for user login 
 router.route("/login")
-    // render a signup form 
+    // render a login form
     .get(usersController.renderLoginForm)
 
-    // add a user in DB
+    // login user
     .post(
         // saveRedirectUrl,
         passport.authenticate(
@@ -31,6 +31,7 @@ router.route("/login")
         wrapAsync(usersController.login)
     );
 
+// route for user logout
 router.post(
     "/logout",
     isLoggedIn,
