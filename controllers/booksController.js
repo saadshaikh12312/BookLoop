@@ -87,9 +87,7 @@ module.exports.newBook = async (req, res) => {
     }
     book.owner = req.user._id;      // saved user's id in book -> owner
     let savedData = await book.save();      // saved book in DB
-
-    console.log(savedData)
-
+  
     // if book is not saved in DB , redirect to new book form
     if (!savedData) {
         req.flash("error", "some error occured! Please try again later.");
@@ -170,10 +168,8 @@ module.exports.editBook = async (req, res) => {
         try {
             // delete old image 
             if (oldBook.image?.filename) {
-                await cloudinary.uploader.destroy(oldBook.image.filename);
-                console.log("Old image deleted from cloudinary");
+                await cloudinary.uploader.destroy(oldBook.image.filename); 
             }
-            console.log(oldBook.image);
 
             // save new image info (already uploaded)
             book.image = {
@@ -209,7 +205,6 @@ module.exports.destroyBook = async (req, res) => {
     // if book was deleted successfully , delete the image from cloudinary
     if (deletedBook?.image?.filename) {
         await cloudinary.uploader.destroy(deletedBook.image.filename);
-        console.log("Image deleted from cloudinary");
     }
 
     // if book is not found in DB , redirect to books index page
